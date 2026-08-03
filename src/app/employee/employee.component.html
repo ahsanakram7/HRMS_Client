@@ -1,0 +1,459 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: rgb(13 110 253 / 19%) !important;">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold" href="#">
+            EMS
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- Left Menu -->
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+
+                    <a class="nav-link" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" routerLink="/employee">
+                        Employees
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="#">
+                        Departments
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="#">
+                        Reports
+                    </a>
+
+                </li>
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
+
+                        Masters
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Designation
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Department
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                City
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+            <!-- Search -->
+
+            <form class="d-flex me-3">
+
+                <input class="form-control"
+                       placeholder="Search...">
+
+            </form>
+
+            <!-- User -->
+
+            <div class="dropdown">
+
+                <button class="btn btn-light dropdown-toggle"
+                        data-bs-toggle="dropdown">
+
+                    👤 Admin
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Settings
+                        </a>
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
+
+                    <li>
+                        <a class="dropdown-item text-danger" routerLink="/">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid bg-light min-vh-100 p-4">
+    <!-- HEADER -->
+    <div class="card border-0 shadow-lg mb-4 overflow-hidden">
+        <div class="card-body text-white p-4" style="background:linear-gradient(135deg, #0ddcfd, #6610f24f);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="fw-bold mb-1">
+                        Employee Management System
+                    </h2>
+                    <p class="mb-0 opacity-75">
+                        Manage Employee Records
+                    </p>
+                </div>
+                <div>
+                    <button class="btn btn-light" (click)="showEmpAddForm()">
+                        + New Employee
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORM -->
+
+    <div class="card shadow border-0 mb-4" *ngIf="!showListArea">
+        
+        <div class="card-header bg-white border-bottom">
+            <h4 class="mb-0">
+                Employee Information
+            </h4>
+        </div>
+
+        <div class="card-body">
+            
+            <form>
+                <div class="row g-3">
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Employee No</mat-label>
+                            <input matInput type="number" name="emp_no" placeholder="Employee No" [(ngModel)]="employee.emp_no" [disabled]="disableControls">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Full Name</mat-label>
+                            <input matInput name="full_name" placeholder="Full Name" [(ngModel)]="employee.full_name" [disabled]="disableControls">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Employee Type</mat-label>
+                            <mat-select name="part_full_time_flag" [(ngModel)]="employee.part_full_time_flag" [disabled]="disableControls">
+                              <mat-option value="F">Full Time</mat-option>
+                              <mat-option value="P">Part Time</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Religion</mat-label>
+                            <mat-select name="religion" [(ngModel)]="employee.religion" [disabled]="disableControls">
+                              <mat-option value="Islam">Islam</mat-option>
+                              <mat-option value="Hindu">Hindu</mat-option>
+                              <mat-option value="Christian">Christian</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sex</mat-label>
+                            <mat-select name="emp_sex" [(ngModel)]="employee.emp_sex" [disabled]="disableControls">
+                              <mat-option value="Male">Male</mat-option>
+                              <mat-option value="Female">Female</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Blood Group</mat-label>
+                            <mat-select name="blood_group" [(ngModel)]="employee.blood_group" [disabled]="disableControls">
+                              <mat-option value="A+">A+</mat-option>
+                              <mat-option value="A-">A-</mat-option>
+                              <mat-option value="B+">B+</mat-option>
+                              <mat-option value="B−">B−</mat-option>
+                              <mat-option value="AB+">AB+</mat-option>
+                              <mat-option value="AB-">AB-</mat-option>
+                              <mat-option value="O+">O+</mat-option>
+                              <mat-option value="O-">O-</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Marital Status</mat-label>
+                            <mat-select name="marital_status" [(ngModel)]="employee.marital_status" [disabled]="disableControls">
+                              <mat-option value="M">Married</mat-option>
+                              <mat-option value="S">Single</mat-option>
+                              <mat-option value="D">Divorced</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Marital Date</mat-label>
+                            <input matInput [matDatepicker]="Maritalpicker" name="marital_dated" [(ngModel)]="employee.marital_dated" [disabled]="disableControls">
+                            <mat-datepicker-toggle matSuffix [for]="Maritalpicker"></mat-datepicker-toggle>
+                            <mat-datepicker #Maritalpicker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Date Of Birth</mat-label>
+                            <input matInput [matDatepicker]="picker" name="date_of_birth" [(ngModel)]="employee.date_of_birth" [disabled]="disableControls">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Country Of Birth</mat-label>
+                            <input matInput name="country_of_birth" placeholder="Country Of Birth" [(ngModel)]="employee.country_of_birth" [disabled]="disableControls">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>City Of Birth</mat-label>
+                            <input matInput name="city_of_birth" placeholder="City Of Birth" [(ngModel)]="employee.city_of_birth" [disabled]="disableControls">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Can Travel Local</mat-label>
+                            <mat-select name="can_travel_local" [(ngModel)]="employee.can_travel_local" [disabled]="disableControls">
+                              <mat-option value="Y">Yes</mat-option>
+                              <mat-option value="N">No</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Can Travel Abroad</mat-label>
+                            <mat-select name="can_travel_abroad" [(ngModel)]="employee.can_travel_abroad" [disabled]="disableControls">
+                                <mat-option value="Y">Yes</mat-option>
+                                <mat-option value="N">No</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Mobile No</mat-label>
+                            <input matInput name="mobile_no" placeholder="Mobile No" [(ngModel)]="employee.mobile_no" [disabled]="disableControls">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Official Email Address</mat-label>
+                            <input matInput name="official_email_add" placeholder="Official Email Address" [(ngModel)]="employee.official_email_add" [disabled]="disableControls">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Personal Email Address</mat-label>
+                            <input matInput name="personal_email_add" placeholder="Personal Email Address" [(ngModel)]="employee.personal_email_add" [disabled]="disableControls">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button type="reset" class="btn btn-outline-secondary px-4" (click)="BackToList()">
+                        Back
+                    </button>
+
+                    <button class="btn btn-primary px-5" style="opacity: 0.5;" *ngIf="btnVisibility" (click)="fnSaveEmp()">
+                        {{ btnText }}
+                    </button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="card shadow border-0" *ngIf="showListArea">
+        <div class="card-header bg-white">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <h4 class="mb-0">
+                        Employee List
+                    </h4>
+                </div>
+
+                <div class="col-md-5">
+                    <input #searchInput class="form-control" placeholder="🔍 Search Employee" (change)="searchEmployee(searchInput.value)">
+                </div>
+
+                <!-- <div class="col-md-3 text-end">
+                    <button class="btn btn-success">
+                        Export Excel
+                    </button>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Sr #</th>
+                        <th>Employee No</th>
+                        <th>Full Name</th>
+                        <th>Type</th>
+                        <th>Religion</th>
+                        <th>Sex</th>
+                        <th>Blood Group</th>
+                        <th>Marital Status</th>
+                        <!-- <th>Marital Dated</th> -->
+                        <th>Date Of Birth</th>
+                        <th>Country Of Birth</th>
+                        <th>City Of Birth</th>
+                        <th>Can Travel Local</th>
+                        <th>Can Travel Abroad</th>
+                        <th>Mobile No</th>
+                        <th>Official Email Addrress</th>
+                        <!-- <th>Personal Email Addrress</th> -->
+                        <th width="200">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let employee of employees; let i = index;">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ employee.emp_no }}</td>
+                        <td>{{ employee.full_name }}</td>
+                        <td>
+                            <span 
+                                class="badge" style="opacity: 0.5;"
+                                [ngClass]="employee.part_full_time_flag === 'F' ? 'bg-info' : 'bg-secondary'">
+                                
+                                {{ employee.part_full_time_flag === 'F' ? 'Full Time' : 'Part Time' }}
+
+                            </span>
+                        </td>
+                        <td>{{ employee.religion }}</td>
+                        <td>{{ employee.emp_sex }}</td>
+                        <td>{{ employee.blood_group }}</td>
+                        <td>{{ employee.marital_status }}</td>
+
+                        <!-- <td>{{ employee.marital_dated }}</td> -->
+                        <td>{{ employee.date_of_birth | date:'dd/MM/yyyy' }}</td>
+
+                        <td>{{ employee.country_of_birth }}</td>
+                        <td>{{ employee.city_of_birth }}</td>
+
+                        <td>
+                            <span class="badge" style="opacity: 0.5;" [ngClass]="employee.can_travel_local === 'Y' ? 'bg-success' : 'bg-danger'">
+                                {{ employee.can_travel_local === 'Y' ? 'Yes' : 'No' }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge" style="opacity: 0.5;" [ngClass]="employee.can_travel_abroad === 'Y' ? 'bg-success' : 'bg-danger'">
+                                {{ employee.can_travel_abroad === 'Y' ? 'Yes' : 'No' }}
+                            </span>
+                        </td>
+
+                        <td>{{ employee.mobile_no }}</td>
+                        <td>{{ employee.official_email_add }}</td>
+                        <!-- <td>{{ employee.personal_email_add }}</td> -->
+
+                        <td>
+                            <button class="btn btn-sm btn-info mx-1" style="opacity: 0.5;" (click)="fnGetEmployeeById(employee.emp_no, 'view')">
+                                View
+                            </button>
+                            <button class="btn btn-sm btn-warning mx-1" style="opacity: 0.5;" (click)="fnGetEmployeeById(employee.emp_no, 'edit')">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-danger" style="opacity: 0.5;" (click)="fnDeleteEmp(employee.emp_no)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <mat-paginator [length]="pagelength"
+              [pageSize]="pageSize"
+              [pageIndex]="pageIndex"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="pageChangeEvent($event)"
+              aria-label="Select page">
+        </mat-paginator>
+
+    </div>
+</div>

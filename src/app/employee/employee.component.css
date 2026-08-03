@@ -1,0 +1,56 @@
+body{
+    background:#eef2f7;
+}
+
+.card{
+    border-radius:18px;
+}
+
+.card-header{
+    background:white;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    padding:.7rem .9rem;
+    border:1px solid #d9dee8;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#0d6efd;
+    box-shadow:0 0 0 .18rem rgba(13,110,253,.15);
+}
+
+.table thead th{
+    white-space:nowrap;
+    font-weight:600;
+}
+
+.table tbody tr:hover{
+    background:#f4f9ff;
+}
+
+.btn{
+    border-radius:10px;
+}
+
+.badge{
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:.8rem;
+}
+
+.pagination .page-link{
+    border-radius:8px;
+    margin:0 2px;
+}
+
+.shadow{
+    box-shadow:0 10px 30px rgba(0,0,0,.08)!important;
+}
+
+.card-header h4{
+    font-weight:600;
+}

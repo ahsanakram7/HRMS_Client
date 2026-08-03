@@ -1,0 +1,107 @@
+.login-wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4e54c8,#8f94fb);
+    padding:20px;
+}
+
+.login-card{
+    width:420px;
+    border:none;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    color:white;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+.form-control{
+    height:50px;
+    border-radius:12px;
+    padding-left:45px;
+}
+
+.form-control:focus{
+    box-shadow:none;
+    border-color:#6c63ff;
+}
+
+.input-icon{
+    position:absolute;
+    left:15px;
+    top:16px;
+    color:#777;
+}
+
+.btn-login{
+    height:50px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+a{
+    color:white;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+.btn-outline-light{
+    border-radius:10px;
+}
+
+.signup-wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#11998e,#38ef7d);
+    padding:20px;
+}
+
+.signup-card{
+    width:450px;
+    border:none;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    color:white;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+.form-control{
+    height:50px;
+    border-radius:12px;
+    padding-left:45px;
+}
+
+.form-control:focus{
+    box-shadow:none;
+    border-color:#11998e;
+}
+
+.input-icon{
+    position:absolute;
+    left:15px;
+    top:16px;
+    color:#777;
+}
+
+.btn-register{
+    height:50px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+a{
+    color:white;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}

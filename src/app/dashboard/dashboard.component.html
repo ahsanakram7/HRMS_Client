@@ -1,0 +1,245 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: rgb(13 110 253 / 19%) !important;">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold" href="#">
+            EMS
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- Left Menu -->
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+
+                    <a class="nav-link" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" routerLink="/employee">
+                        Employees
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="#">
+                        Departments
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="#">
+                        Reports
+                    </a>
+
+                </li>
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
+
+                        Masters
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Designation
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Department
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                City
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+            <!-- Search -->
+
+            <form class="d-flex me-3">
+
+                <input class="form-control"
+                       placeholder="Search...">
+
+            </form>
+
+            <!-- User -->
+
+            <div class="dropdown">
+
+                <button class="btn btn-light dropdown-toggle"
+                        data-bs-toggle="dropdown">
+
+                    👤 Admin
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Settings
+                        </a>
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
+
+                    <li>
+                        <a class="dropdown-item text-danger" routerLink="/">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid py-4">
+    <div class="row g-4">
+
+        <!-- Card 1 -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <mat-card class="dashboard-card primary">
+
+                <div class="d-flex justify-content-between align-items-start">
+
+                    <div>
+                        <div class="card-title">Total Users</div>
+                        <h2 class="card-value">18,245</h2>
+
+                        <div class="card-info text-success">
+                            <i class="bi bi-arrow-up"></i> +12% this month
+                        </div>
+                    </div>
+
+                    <div class="icon-box">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                </div>
+
+            </mat-card>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <mat-card class="dashboard-card success">
+
+                <div class="d-flex justify-content-between align-items-start">
+
+                    <div>
+                        <div class="card-title">Revenue</div>
+                        <h2 class="card-value">$48,200</h2>
+
+                        <div class="card-info text-success">
+                            <i class="bi bi-arrow-up"></i> +8.4%
+                        </div>
+                    </div>
+
+                    <div class="icon-box">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+
+                </div>
+
+            </mat-card>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <mat-card class="dashboard-card warning">
+
+                <div class="d-flex justify-content-between align-items-start">
+
+                    <div>
+                        <div class="card-title">Orders</div>
+                        <h2 class="card-value">2,354</h2>
+
+                        <div class="card-info text-primary">
+                            <i class="bi bi-clock"></i> Today
+                        </div>
+                    </div>
+
+                    <div class="icon-box">
+                        <i class="bi bi-cart-check-fill"></i>
+                    </div>
+
+                </div>
+
+            </mat-card>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <mat-card class="dashboard-card danger">
+
+                <div class="d-flex justify-content-between align-items-start">
+
+                    <div>
+                        <div class="card-title">Pending Tasks</div>
+                        <h2 class="card-value">42</h2>
+
+                        <div class="card-info text-danger">
+                            <i class="bi bi-exclamation-circle"></i> Needs attention
+                        </div>
+                    </div>
+
+                    <div class="icon-box">
+                        <i class="bi bi-list-task"></i>
+                    </div>
+
+                </div>
+
+            </mat-card>
+        </div>
+
+    </div>
+</div>

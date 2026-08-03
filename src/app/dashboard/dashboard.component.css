@@ -1,0 +1,161 @@
+.dashboard-card{
+
+    position:relative;
+    overflow:hidden;
+
+    border-radius:18px !important;
+
+    padding:24px;
+
+    background:#fff;
+
+    transition:all .3s ease;
+
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+
+    border:none;
+
+    cursor:pointer;
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+}
+
+/* Top Accent */
+
+.dashboard-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:4px;
+}
+
+.primary::before{
+    background:#3f51b5;
+}
+
+.success::before{
+    background:#2e7d32;
+}
+
+.warning::before{
+    background:#ff9800;
+}
+
+.danger::before{
+    background:#e53935;
+}
+
+/* Icon */
+
+.icon-box{
+
+    width:60px;
+    height:60px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f4f6fb;
+
+    color:#3f51b5;
+
+    font-size:28px;
+
+    transition:.3s;
+}
+
+.dashboard-card:hover .icon-box{
+
+    transform:rotate(-8deg) scale(1.08);
+
+    background:#3f51b5;
+
+    color:#fff;
+}
+
+.success:hover .icon-box{
+    background:#2e7d32;
+}
+
+.warning:hover .icon-box{
+    background:#ff9800;
+}
+
+.danger:hover .icon-box{
+    background:#e53935;
+}
+
+/* Text */
+
+.card-title{
+
+    color:#6b7280;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+}
+
+.card-value{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+    color:#222;
+}
+
+.card-info{
+
+    font-size:14px;
+
+    font-weight:500;
+}
+
+/* Animation */
+
+.dashboard-card{
+
+    animation:fadeInUp .5s ease;
+}
+
+@keyframes fadeInUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+}

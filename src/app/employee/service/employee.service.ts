@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
-import { employee } from '../employee.component';
+import { employee } from '../../models/employee';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  private headers: HttpHeaders;
-  private params: HttpParams;
+  // private headers: HttpHeaders;
+  // private params: HttpParams;
 
   constructor(private client: HttpClient) {
 
-    this.headers = new HttpHeaders();
-    this.headers = this.headers.append('Content-Type', 'application/json');
-    this.params = new HttpParams();
+    // this.headers = new HttpHeaders();
+    // this.headers = this.headers.append('Content-Type', 'application/json');
+    // this.params = new HttpParams();
 
   }
 
@@ -22,23 +22,23 @@ export class EmployeeService {
 
     var obj = JSON.stringify(search_emp_Info);
 
-    var options = {
-      headers: this.headers,
-      params: this.params
-    }
+    // var options = {
+    //   headers: this.headers,
+    //   params: this.params
+    // }
 
-    return this.client.get('https://localhost:7082/api/Employee/getAllEmployees?obj='+ encodeURIComponent(obj) +'&r='+ pageIndex + '&p=' + pageSize, options);
+    return this.client.get('https://localhost:7082/api/Employee/getAllEmployees?obj='+ encodeURIComponent(obj) +'&r='+ pageIndex + '&p=' + pageSize);
 
   }
 
   fnGetEmployeeById(Id: number){
 
-    var options = {
-      headers: this.headers,
-      params: this.params
-    }
+    // var options = {
+    //   headers: this.headers,
+    //   params: this.params
+    // }
 
-    return this.client.get('https://localhost:7082/api/Employee/getEmployeeById?Id='+ Id , options);
+    return this.client.get('https://localhost:7082/api/Employee/getEmployeeById?Id='+ Id);
 
   }
 
@@ -46,12 +46,12 @@ export class EmployeeService {
 
     var obj = JSON.stringify(emp_Info);
 
-    var options = {
-      headers: this.headers,
-      params: this.params
-    }
+    // var options = {
+    //   headers: this.headers,
+    //   params: this.params
+    // }
 
-    return this.client.get('https://localhost:7082/api/Employee/saveEmployee?obj='+ encodeURIComponent(obj), options);
+    return this.client.get('https://localhost:7082/api/Employee/saveEmployee?obj='+ encodeURIComponent(obj));
 
   }
 
@@ -59,23 +59,23 @@ export class EmployeeService {
 
     var obj = JSON.stringify(emp_Info);
 
-    var options = {
-      headers: this.headers,
-      params: this.params
-    }
+    // var options = {
+    //   headers: this.headers,
+    //   params: this.params
+    // }
 
-    return this.client.get('https://localhost:7082/api/Employee/updateEmployee?obj='+ encodeURIComponent(obj), options);
+    return this.client.get('https://localhost:7082/api/Employee/updateEmployee?obj='+ encodeURIComponent(obj));
 
   }
 
   fnDeleteEmp(Id: number){
 
-    var options = {
-      headers: this.headers,
-      params: this.params
-    }
+    // var options = {
+    //   headers: this.headers,
+    //   params: this.params
+    // }
 
-    return this.client.get('https://localhost:7082/api/Employee/deleteEmployee?Id='+ Id , options);
+    return this.client.get('https://localhost:7082/api/Employee/deleteEmployee?Id='+ Id);
 
   }
 

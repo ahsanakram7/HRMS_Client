@@ -11,9 +11,12 @@
         <div class="mb-3 position-relative">
           <i class="bi bi-envelope-fill input-icon"></i>
           <input
-            type="email"
+            type="text"
             class="form-control"
-            placeholder="Email Address">
+            placeholder="UserName"
+            [(ngModel)]="loginModal.userName"
+            name="userName">
+          <p class="text-danger" *ngIf="inValidUserName!=''">{{ inValidUserName }}</p>
         </div>
   
         <div class="mb-3 position-relative">
@@ -21,7 +24,10 @@
           <input
             type="password"
             class="form-control"
-            placeholder="Password">
+            placeholder="Password"
+            [(ngModel)]="loginModal.password"
+            name="password">
+          <p class="text-danger" *ngIf="inValidPassword!=''">{{ inValidPassword }}</p>
         </div>
   
         <div class="d-flex justify-content-between mb-3">
@@ -37,7 +43,7 @@
   
         </div>
   
-        <button class="btn btn-light w-100 btn-login" routerLink="/dashboard">
+        <button class="btn btn-light w-100 btn-login" (click)="login()">
           Login
         </button>
 

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './service/employee.service';
 import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
+import { employee } from '../models/employee';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -25,7 +28,9 @@ export class EmployeeComponent implements OnInit {
   btnText: string = '';
   btnVisibility: boolean = false;
 
-  constructor(private employeeService: EmployeeService) {
+  user: any;
+
+  constructor(public authService: AuthService, private employeeService: EmployeeService, private router: Router) {
 
     this.employee = {
       emp_no: 0,
@@ -74,7 +79,15 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
 
     this.fnGetAllEmployees();
+    this.user = this.authService.getUser();
 
+  }
+
+  logout(){
+
+    this.authService.logout();
+    this.router.navigate(['/']);
+  
   }
 
   showEmpAddForm(){
@@ -257,7 +270,7 @@ export class EmployeeComponent implements OnInit {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to undo this!",
-      icon: 'warning',
+      icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -303,24 +316,4 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-}
-
-export interface employee{
-  emp_no: number;
-  full_name: string;
-  part_full_time_flag: string; 
-  religion: string;
-  emp_sex: string;
-  blood_group: string;
-  marital_status: string;
-  marital_dated: Date;
-  date_of_birth: Date;
-  country_of_birth: string;
-  city_of_birth: string;
-  can_travel_local: string;
-  can_travel_abroad: string;
-  mobile_no: string;
-  official_email_add: string;
-  personal_email_add: string;
-  totalRecords: number;
 }

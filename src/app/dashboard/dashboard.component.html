@@ -28,8 +28,8 @@
                     </a>
 
                 </li>
-
-                <li class="nav-item">
+                
+                <li class="nav-item" *ngIf="authService.hasRole('Admin')">
 
                     <a class="nav-link" routerLink="/employee">
                         Employees
@@ -106,7 +106,7 @@
                 <button class="btn btn-light dropdown-toggle"
                         data-bs-toggle="dropdown">
 
-                    👤 Admin
+                    👤 {{ user?.fullName }}
 
                 </button>
 
@@ -127,7 +127,7 @@
                     <li><hr class="dropdown-divider"></li>
 
                     <li>
-                        <a class="dropdown-item text-danger" routerLink="/">
+                        <a class="dropdown-item text-danger" (click)="logout()">
                             Logout
                         </a>
                     </li>

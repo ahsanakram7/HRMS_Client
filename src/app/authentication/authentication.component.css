@@ -3,8 +3,14 @@
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#4e54c8,#8f94fb);
+    /* background:linear-gradient(135deg, #0dcaf057, #343a4073); */
+    background-image: url('/assets/images/Login-BG.jpg');
     padding:20px;
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .login-card{
@@ -59,8 +65,14 @@ a:hover{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#11998e,#38ef7d);
+    /* background:linear-gradient(135deg, #0dcaf057, #343a4073); */
+    background-image: url('/assets/images/Login-BG.jpg');
     padding:20px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .signup-card{

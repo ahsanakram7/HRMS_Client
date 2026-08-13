@@ -1,147 +1,3 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: rgb(13 110 253 / 19%) !important;">
-
-    <div class="container-fluid">
-
-        <a class="navbar-brand fw-bold" href="#">
-            EMS
-        </a>
-
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMenu">
-
-            <span class="navbar-toggler-icon"></span>
-
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarMenu">
-
-            <!-- Left Menu -->
-
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-
-                    <a class="nav-link" routerLink="/dashboard">
-                        Dashboard
-                    </a>
-
-                </li>
-
-                <li class="nav-item" *ngIf="authService.hasRole('Admin')">
-
-                    <a class="nav-link" routerLink="/employee">
-                        Employees
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-
-                    <a class="nav-link" href="#">
-                        Departments
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-
-                    <a class="nav-link" href="#">
-                        Reports
-                    </a>
-
-                </li>
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown">
-
-                        Masters
-
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Designation
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Department
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                City
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-            </ul>
-
-            <!-- Search -->
-
-            <form class="d-flex me-3">
-
-                <input class="form-control"
-                       placeholder="Search...">
-
-            </form>
-
-            <!-- User -->
-
-            <div class="dropdown">
-
-                <button class="btn btn-light dropdown-toggle"
-                        data-bs-toggle="dropdown">
-
-                    👤 {{ user?.fullName }}
-
-                </button>
-
-                <ul class="dropdown-menu dropdown-menu-end">
-
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Profile
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Settings
-                        </a>
-                    </li>
-
-                    <li><hr class="dropdown-divider"></li>
-
-                    <li>
-                        <a class="dropdown-item text-danger" (click)="logout()">
-                            Logout
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</nav>
-
 <div class="container-fluid bg-light min-vh-100 p-4">
     <!-- HEADER -->
     <div class="card border-0 shadow-lg mb-4 overflow-hidden">
@@ -345,115 +201,292 @@
 
     <!-- TABLE -->
 
-    <div class="card shadow border-0" *ngIf="showListArea">
-        <div class="card-header bg-white">
-            <div class="row align-items-center">
-                <div class="col-md-4">
-                    <h4 class="mb-0">
-                        Employee List
-                    </h4>
-                </div>
+    <div class="employee-card" *ngIf="showListArea">
 
-                <div class="col-md-5">
-                    <input #searchInput class="form-control" placeholder="🔍 Search Employee" (change)="searchEmployee(searchInput.value)">
-                </div>
-
-                <!-- <div class="col-md-3 text-end">
-                    <button class="btn btn-success">
-                        Export Excel
-                    </button>
-                </div> -->
+        <!-- Header -->
+        <div class="employee-header">
+            <div>
+                <h4 class="employee-title">Employee List</h4>
+                <p class="employee-subtitle">
+                    Manage and view all employees
+                </p>
+            </div>
+    
+            <div class="employee-search">
+                <i class="bi bi-search"></i>
+                <input
+                    #searchInput
+                    type="text"
+                    class="form-control"
+                    placeholder="Search employees..."
+                    (input)="searchEmployee(searchInput.value)"
+                />
             </div>
         </div>
-
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-primary">
+    
+        <!-- Table -->
+        <div class="table-wrapper">
+            <table class="modern-table">
+    
+                <thead>
                     <tr>
-                        <th>Sr #</th>
-                        <th>Employee No</th>
-                        <th>Full Name</th>
+                        <th class="sr-column">#</th>
+                        <th>Employee</th>
                         <th>Type</th>
                         <th>Religion</th>
-                        <th>Sex</th>
                         <th>Blood Group</th>
-                        <th>Marital Status</th>
-                        <!-- <th>Marital Dated</th> -->
-                        <th>Date Of Birth</th>
-                        <th>Country Of Birth</th>
-                        <th>City Of Birth</th>
-                        <th>Can Travel Local</th>
-                        <th>Can Travel Abroad</th>
-                        <th>Mobile No</th>
-                        <th>Official Email Addrress</th>
-                        <!-- <th>Personal Email Addrress</th> -->
-                        <th width="200">Actions</th>
+                        <th>Date of Birth</th>
+                        <th>Birth Place</th>
+                        <th>Travel</th>
+                        <th>Contact</th>
+                        <th class="actions-column">Actions</th>
                     </tr>
                 </thead>
-
+    
                 <tbody>
-                    <tr *ngFor="let employee of employees; let i = index;">
-                        <td>{{ i+1 }}</td>
-                        <td>{{ employee.emp_no }}</td>
-                        <td>{{ employee.full_name }}</td>
+    
+                    <tr *ngFor="let employee of employees; let i = index">
+    
+                        <!-- Serial -->
+                        <td class="serial-number">
+                            {{ i + 1 }}
+                        </td>
+    
+                        <!-- Employee -->
                         <td>
-                            <span 
-                                class="badge" style="opacity: 0.5;"
-                                [ngClass]="employee.part_full_time_flag === 'F' ? 'bg-info' : 'bg-secondary'">
-                                
-                                {{ employee.part_full_time_flag === 'F' ? 'Full Time' : 'Part Time' }}
-
+                            <div class="employee-info">
+    
+                                <div class="employee-avatar">
+                                    {{ employee.full_name?.charAt(0) }}
+                                </div>
+    
+                                <div class="employee-details">
+    
+                                    <div class="employee-name">
+                                        {{ employee.full_name }}
+                                    </div>
+    
+                                    <div class="employee-number">
+                                        <i class="bi bi-person-badge"></i>
+                                        {{ employee.emp_no }}
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                        </td>
+    
+                        <!-- Type -->
+                        <td>
+                            <span
+                                class="status-badge"
+                                [ngClass]="
+                                    employee.part_full_time_flag === 'F'
+                                    ? 'badge-full-time'
+                                    : 'badge-part-time'
+                                "
+                            >
+                                <span class="status-dot"></span>
+    
+                                {{
+                                    employee.part_full_time_flag === 'F'
+                                    ? 'Full Time'
+                                    : 'Part Time'
+                                }}
                             </span>
                         </td>
-                        <td>{{ employee.religion }}</td>
-                        <td>{{ employee.emp_sex }}</td>
-                        <td>{{ employee.blood_group }}</td>
-                        <td>{{ employee.marital_status }}</td>
-
-                        <!-- <td>{{ employee.marital_dated }}</td> -->
-                        <td>{{ employee.date_of_birth | date:'dd/MM/yyyy' }}</td>
-
-                        <td>{{ employee.country_of_birth }}</td>
-                        <td>{{ employee.city_of_birth }}</td>
-
+    
+                        <!-- Religion -->
                         <td>
-                            <span class="badge" style="opacity: 0.5;" [ngClass]="employee.can_travel_local === 'Y' ? 'bg-success' : 'bg-danger'">
-                                {{ employee.can_travel_local === 'Y' ? 'Yes' : 'No' }}
+                            <span class="normal-text">
+                                {{ employee.religion || '—' }}
                             </span>
                         </td>
+    
+                        <!-- Blood Group -->
                         <td>
-                            <span class="badge" style="opacity: 0.5;" [ngClass]="employee.can_travel_abroad === 'Y' ? 'bg-success' : 'bg-danger'">
-                                {{ employee.can_travel_abroad === 'Y' ? 'Yes' : 'No' }}
+                            <span class="blood-badge">
+                                {{ employee.blood_group || '—' }}
                             </span>
                         </td>
-
-                        <td>{{ employee.mobile_no }}</td>
-                        <td>{{ employee.official_email_add }}</td>
-                        <!-- <td>{{ employee.personal_email_add }}</td> -->
-
+    
+                        <!-- DOB -->
                         <td>
-                            <button class="btn btn-sm btn-info mx-1" style="opacity: 0.5;" (click)="fnGetEmployeeById(employee.emp_no, 'view')">
-                                View
-                            </button>
-                            <button class="btn btn-sm btn-warning mx-1" style="opacity: 0.5;" (click)="fnGetEmployeeById(employee.emp_no, 'edit')">
-                                Edit
-                            </button>
-                            <button class="btn btn-sm btn-danger" style="opacity: 0.5;" (click)="fnDeleteEmp(employee.emp_no)">
-                                Delete
-                            </button>
+                            <div class="date-cell">
+                                <i class="bi bi-calendar3"></i>
+                                {{ employee.date_of_birth | date:'dd MMM yyyy' }}
+                            </div>
                         </td>
+    
+                        <!-- Birth Place -->
+                        <td>
+                            <div class="location-cell">
+                                <span class="city">
+                                    {{ employee.city_of_birth || '—' }}
+                                </span>
+    
+                                <span class="country">
+                                    {{ employee.country_of_birth || '' }}
+                                </span>
+                            </div>
+                        </td>
+    
+                        <!-- Travel -->
+                        <td>
+                            <div class="travel-status">
+    
+                                <span
+                                    class="travel-badge"
+                                    [ngClass]="
+                                        employee.can_travel_local === 'Y'
+                                        ? 'travel-yes'
+                                        : 'travel-no'
+                                    "
+                                    title="Local Travel"
+                                >
+                                    <i
+                                        class="bi"
+                                        [ngClass]="
+                                            employee.can_travel_local === 'Y'
+                                            ? 'bi-check-circle-fill'
+                                            : 'bi-x-circle-fill'
+                                        "
+                                    ></i>
+                                    Local
+                                </span>
+    
+                                <span
+                                    class="travel-badge"
+                                    [ngClass]="
+                                        employee.can_travel_abroad === 'Y'
+                                        ? 'travel-yes'
+                                        : 'travel-no'
+                                    "
+                                    title="International Travel"
+                                >
+                                    <i
+                                        class="bi"
+                                        [ngClass]="
+                                            employee.can_travel_abroad === 'Y'
+                                            ? 'bi-check-circle-fill'
+                                            : 'bi-x-circle-fill'
+                                        "
+                                    ></i>
+                                    Abroad
+                                </span>
+    
+                            </div>
+                        </td>
+    
+                        <!-- Contact -->
+                        <td>
+                            <div class="contact-cell">
+    
+                                <div class="contact-item">
+                                    <i class="bi bi-phone"></i>
+                                    <span>
+                                        {{ employee.mobile_no || '—' }}
+                                    </span>
+                                </div>
+    
+                                <div
+                                    class="contact-item email"
+                                    [title]="employee.official_email_add"
+                                >
+                                    <i class="bi bi-envelope"></i>
+                                    <span>
+                                        {{ employee.official_email_add || '—' }}
+                                    </span>
+                                </div>
+    
+                            </div>
+                        </td>
+    
+                        <!-- Actions -->
+                        <td class="actions-column">
+    
+                            <div class="action-buttons">
+    
+                                <button
+                                    type="button"
+                                    class="action-btn view-btn"
+                                    (click)="fnGetEmployeeById(employee.emp_no, 'view')"
+                                    title="View Employee"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+    
+                                <button
+                                    type="button"
+                                    class="action-btn edit-btn"
+                                    (click)="fnGetEmployeeById(employee.emp_no, 'edit')"
+                                    title="Edit Employee"
+                                >
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+    
+                                <button
+                                    type="button"
+                                    class="action-btn delete-btn"
+                                    (click)="fnDeleteEmp(employee.emp_no)"
+                                    title="Delete Employee"
+                                >
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+    
+                            </div>
+    
+                        </td>
+    
                     </tr>
+    
+                    <!-- Empty State -->
+                    <tr *ngIf="employees?.length === 0">
+    
+                        <td colspan="10">
+    
+                            <div class="empty-state">
+    
+                                <div class="empty-icon">
+                                    <i class="bi bi-people"></i>
+                                </div>
+    
+                                <h5>No employees found</h5>
+    
+                                <p>
+                                    Try changing your search or add a new employee.
+                                </p>
+    
+                            </div>
+    
+                        </td>
+    
+                    </tr>
+    
                 </tbody>
+    
             </table>
         </div>
-
-        <mat-paginator [length]="pagelength"
-              [pageSize]="pageSize"
-              [pageIndex]="pageIndex"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              (page)="pageChangeEvent($event)"
-              aria-label="Select page">
-        </mat-paginator>
-
+    
+        <!-- Footer / Pagination -->
+        <div class="table-footer">
+    
+            <div class="table-summary">
+                Showing
+                <strong>{{ employees?.length || 0 }}</strong>
+                employees
+            </div>
+    
+            <mat-paginator
+                [length]="pagelength"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="pageChangeEvent($event)"
+                aria-label="Select page">
+            </mat-paginator>
+    
+        </div>
+    
     </div>
 </div>

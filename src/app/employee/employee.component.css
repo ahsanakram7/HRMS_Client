@@ -54,3 +54,603 @@ body{
 .card-header h4{
     font-weight:600;
 }
+
+/* ================================
+   Employee Table
+================================ */
+
+.employee-card {
+    background: #ffffff;
+    border: 1px solid #e7eaf0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+
+/* ================================
+   Header
+================================ */
+
+.employee-header {
+    min-height: 90px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid #edf0f4;
+    background: #ffffff;
+}
+
+.employee-title {
+    margin: 0;
+    color: #172033;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.employee-subtitle {
+    margin: 4px 0 0;
+    color: #8a94a6;
+    font-size: 13px;
+}
+
+
+/* ================================
+   Search
+================================ */
+
+.employee-search {
+    position: relative;
+    width: 320px;
+}
+
+.employee-search i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9aa4b2;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.employee-search input {
+    height: 42px;
+    padding-left: 40px;
+    padding-right: 14px;
+
+    border: 1px solid #e1e5eb;
+    border-radius: 10px;
+
+    background: #f8f9fb;
+    color: #273142;
+
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+.employee-search input::placeholder {
+    color: #9aa4b2;
+}
+
+.employee-search input:focus {
+    background: #ffffff;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.10);
+}
+
+
+/* ================================
+   Table Wrapper
+================================ */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.modern-table {
+    width: 100%;
+    min-width: 1500px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+/* ================================
+   Table Header
+================================ */
+
+.modern-table thead th {
+    padding: 13px 16px;
+
+    background: #f8fafc;
+
+    color: #667085;
+
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid #e9edf2;
+}
+
+.modern-table thead th:first-child {
+    padding-left: 24px;
+}
+
+
+/* ================================
+   Table Body
+================================ */
+
+.modern-table tbody tr {
+    background: #ffffff;
+    transition: background 0.15s ease;
+}
+
+.modern-table tbody tr:hover {
+    background: #f8faff;
+}
+
+.modern-table tbody td {
+    padding: 15px 16px;
+
+    color: #344054;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #f0f2f5;
+
+    vertical-align: middle;
+}
+
+.modern-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ================================
+   Serial Number
+================================ */
+
+.sr-column {
+    width: 60px;
+}
+
+.serial-number {
+    padding-left: 24px !important;
+    color: #98a2b3 !important;
+    font-size: 12px !important;
+    font-weight: 600;
+}
+
+
+/* ================================
+   Employee
+================================ */
+
+.employee-info {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 200px;
+}
+
+.employee-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.employee-details {
+    min-width: 0;
+}
+
+.employee-name {
+    color: #1d2939;
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.employee-number {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-top: 3px;
+
+    color: #98a2b3;
+    font-size: 11px;
+}
+
+.employee-number i {
+    font-size: 11px;
+}
+
+
+/* ================================
+   Employee Type
+================================ */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.badge-full-time {
+    color: #027a48;
+    background: #ecfdf3;
+}
+
+.badge-full-time .status-dot {
+    background: #12b76a;
+}
+
+.badge-part-time {
+    color: #475467;
+    background: #f2f4f7;
+}
+
+.badge-part-time .status-dot {
+    background: #98a2b3;
+}
+
+
+/* ================================
+   Blood Group
+================================ */
+
+.blood-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 42px;
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    background: #fff1f3;
+    color: #d92d20;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   Date
+================================ */
+
+.date-cell {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    white-space: nowrap;
+
+    color: #475467;
+}
+
+.date-cell i {
+    color: #98a2b3;
+}
+
+
+/* ================================
+   Location
+================================ */
+
+.location-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 120px;
+}
+
+.location-cell .city {
+    color: #344054;
+    font-weight: 600;
+}
+
+.location-cell .country {
+    color: #98a2b3;
+    font-size: 11px;
+}
+
+
+/* ================================
+   Travel
+================================ */
+
+.travel-status {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.travel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    width: fit-content;
+
+    padding: 4px 7px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.travel-yes {
+    color: #027a48;
+    background: #ecfdf3;
+}
+
+.travel-no {
+    color: #b42318;
+    background: #fef3f2;
+}
+
+
+/* ================================
+   Contact
+================================ */
+
+.contact-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    min-width: 220px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #475467;
+
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.contact-item i {
+    width: 15px;
+    color: #98a2b3;
+}
+
+.contact-item.email {
+    max-width: 230px;
+}
+
+.contact-item.email span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ================================
+   Actions
+================================ */
+
+.actions-column {
+    width: 125px;
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    background: transparent;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: all 0.18s ease;
+}
+
+.view-btn {
+    color: #475467;
+    background: #f2f4f7;
+}
+
+.view-btn:hover {
+    color: #344054;
+    background: #e4e7ec;
+}
+
+.edit-btn {
+    color: #b54708;
+    background: #fffaeb;
+}
+
+.edit-btn:hover {
+    color: #92400e;
+    background: #fef0c7;
+}
+
+.delete-btn {
+    color: #d92d20;
+    background: #fef3f2;
+}
+
+.delete-btn:hover {
+    color: #b42318;
+    background: #fee4e2;
+}
+
+
+/* ================================
+   Footer
+================================ */
+
+.table-footer {
+    min-height: 62px;
+
+    padding: 8px 20px 8px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-top: 1px solid #edf0f4;
+    background: #ffffff;
+}
+
+.table-summary {
+    color: #98a2b3;
+    font-size: 12px;
+}
+
+.table-summary strong {
+    color: #475467;
+}
+
+
+/* Remove excessive Material paginator spacing */
+
+.table-footer mat-paginator {
+    background: transparent;
+}
+
+
+/* ================================
+   Empty State
+================================ */
+
+.empty-state {
+    padding: 60px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+
+    background: #f2f4f7;
+    color: #98a2b3;
+
+    font-size: 24px;
+}
+
+.empty-state h5 {
+    margin: 0 0 5px;
+
+    color: #344054;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: #98a2b3;
+    font-size: 13px;
+}
+
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 768px) {
+
+    .employee-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .employee-search {
+        width: 100%;
+    }
+
+    .table-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}

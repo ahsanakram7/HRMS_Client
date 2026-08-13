@@ -1,0 +1,93 @@
+/* ================================
+   DESKTOP SIDEBAR
+================================ */
+
+@media (min-width: 992px) {
+    aside {
+        min-height: calc(100vh - 57px);
+        position: sticky;
+        top: 57px;
+        height: calc(100vh - 57px);
+        overflow-y: auto;
+    }
+}
+
+
+/* ================================
+   SIDEBAR NAVIGATION
+================================ */
+
+.nav-pills .nav-link {
+    border-radius: 0.5rem;
+    padding: 0.7rem 1rem;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--bs-primary);
+}
+
+
+/* ================================
+   SIDEBAR SCROLLBAR
+================================ */
+
+aside::-webkit-scrollbar {
+    width: 5px;
+}
+
+aside::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+
+/* ================================
+   SEARCH
+================================ */
+
+.navbar .input-group {
+    width: 280px;
+}
+
+
+/* ================================
+   NOTIFICATION PANEL
+================================ */
+
+#notificationPanel {
+    width: min(400px, 90vw);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 991.98px) {
+    main {
+        padding: 1rem !important;
+    }
+}
+
+
+/* ================================
+   TOP NAVBAR
+================================ */
+
+.navbar {
+    min-height: 57px;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    font-size: 0.85rem;
+}

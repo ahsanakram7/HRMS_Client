@@ -1,0 +1,696 @@
+<div class="d-flex flex-column min-vh-100 bg-body-tertiary">
+
+    <!-- ================= TOP BAR ================= -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm sticky-top">
+
+        <div class="container-fluid">
+
+            <!-- Sidebar Toggle -->
+            <button
+                class="btn btn-outline-secondary d-lg-none me-2"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#sidebarMenu"
+                aria-controls="sidebarMenu"
+                aria-label="Toggle navigation">
+
+                <i class="bi bi-list fs-5"></i>
+
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold text-primary" routerLink="/dashboard">
+                <i class="bi bi-building me-2"></i>
+                EMS
+            </a>
+
+            <!-- Mobile Right Actions -->
+            <div class="d-flex align-items-center ms-auto d-lg-none">
+
+                <!-- Notifications -->
+                <button
+                    class="btn btn-light position-relative me-2"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#notificationPanel"
+                    aria-label="Notifications">
+
+                    <i class="bi bi-bell fs-5"></i>
+
+                    <span
+                        class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
+                        3
+                        <span class="visually-hidden">
+                            unread notifications
+                        </span>
+                    </span>
+
+                </button>
+
+                <!-- User -->
+                <div class="dropdown">
+
+                    <button
+                        class="btn btn-light dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+
+                        <i class="bi bi-person-circle me-1"></i>
+                        {{ user?.fullName }}
+
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+
+                        <li>
+                            <h6 class="dropdown-header">
+                                {{ user?.fullName }}
+                            </h6>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" routerLink="/profile">
+                                <i class="bi bi-person me-2"></i>
+                                Profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" routerLink="/settings">
+                                <i class="bi bi-gear me-2"></i>
+                                Settings
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <button
+                                class="dropdown-item text-danger"
+                                type="button"
+                                (click)="logout()">
+
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                Logout
+
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <!-- Desktop Right Actions -->
+            <div class="d-none d-lg-flex align-items-center ms-auto">
+
+                <!-- Search -->
+                <form class="d-flex me-3" role="search">
+
+                    <div class="input-group">
+
+                        <span class="input-group-text bg-light border-end-0">
+                            <i class="bi bi-search"></i>
+                        </span>
+
+                        <input
+                            type="search"
+                            class="form-control bg-light border-start-0"
+                            placeholder="Search..."
+                            aria-label="Search">
+
+                    </div>
+
+                </form>
+
+                <!-- Notifications -->
+                <button
+                    class="btn btn-light position-relative me-3"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#notificationPanel"
+                    aria-controls="notificationPanel"
+                    aria-label="Notifications">
+
+                    <i class="bi bi-bell fs-5"></i>
+
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+                        3
+
+                        <span class="visually-hidden">
+                            unread notifications
+                        </span>
+
+                    </span>
+
+                </button>
+
+                <!-- User Dropdown -->
+                <div class="dropdown">
+
+                    <button
+                        class="btn btn-light dropdown-toggle d-flex align-items-center"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+
+                        <i class="bi bi-person-circle fs-5 me-2"></i>
+
+                        <span>
+                            {{ user?.fullName }}
+                        </span>
+
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+
+                        <li>
+                            <h6 class="dropdown-header">
+                                Account
+                            </h6>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" routerLink="/profile">
+                                <i class="bi bi-person me-2"></i>
+                                Profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" routerLink="/settings">
+                                <i class="bi bi-gear me-2"></i>
+                                Settings
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <button
+                                class="dropdown-item text-danger"
+                                type="button"
+                                (click)="logout()">
+
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                Logout
+
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= BODY ================= -->
+    <div class="d-flex flex-grow-1">
+
+
+        <!-- ================= DESKTOP SIDEBAR ================= -->
+        <aside
+            class="d-none d-lg-flex flex-column flex-shrink-0 bg-dark text-white"
+            style="width: 260px;">
+
+            <!-- Sidebar Header -->
+            <div class="p-3 border-bottom border-secondary">
+
+                <div class="d-flex align-items-center">
+
+                    <div
+                        class="bg-primary rounded-3 d-flex align-items-center justify-content-center me-2"
+                        style="width: 40px; height: 40px;">
+
+                        <i class="bi bi-building fs-5"></i>
+
+                    </div>
+
+                    <div>
+                        <div class="fw-semibold">
+                            Employee Management
+                        </div>
+
+                        <small class="text-white-50">
+                            Administration
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Sidebar Navigation -->
+            <nav class="nav nav-pills flex-column p-3 gap-1">
+
+                <small class="text-uppercase text-white-50 fw-semibold px-3 mb-2">
+                    Main Menu
+                </small>
+
+
+                <!-- Dashboard -->
+                <a
+                    class="nav-link text-white"
+                    routerLink="/dashboard"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }">
+
+                    <i class="bi bi-speedometer2 me-3"></i>
+                    Dashboard
+
+                </a>
+
+
+                <!-- Employees -->
+                <a
+                    *ngIf="authService.hasRole('Admin')"
+                    class="nav-link text-white"
+                    routerLink="/employee"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-person-circle me-3"></i>
+                    Employees
+
+                </a>
+
+                <!-- Users -->
+                <a
+                    *ngIf="authService.hasRole('Admin')"
+                    class="nav-link text-white"
+                    routerLink="/user"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-people me-3"></i>
+                    User Management
+
+                </a>
+
+
+                <!-- Departments -->
+                <a
+                    class="nav-link text-white"
+                    routerLink="/department"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-diagram-3 me-3"></i>
+                    Departments
+
+                </a>
+
+
+                <!-- Reports -->
+                <a
+                    class="nav-link text-white"
+                    routerLink="/reports"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-bar-chart-line me-3"></i>
+                    Reports
+
+                </a>
+
+
+                <!-- Masters -->
+                <div class="mt-3">
+
+                    <small class="text-uppercase text-white-50 fw-semibold px-3">
+                        Masters
+                    </small>
+
+                </div>
+
+
+                <a
+                    class="nav-link text-white"
+                    routerLink="/designation"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-person-badge me-3"></i>
+                    Designations
+
+                </a>
+
+
+                <a
+                    class="nav-link text-white"
+                    routerLink="/department"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-building me-3"></i>
+                    Departments
+
+                </a>
+
+
+                <a
+                    class="nav-link text-white"
+                    routerLink="/city"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-geo-alt me-3"></i>
+                    Cities
+
+                </a>
+
+            </nav>
+
+
+            <!-- Sidebar Bottom -->
+            <div class="mt-auto p-3 border-top border-secondary">
+
+                <div class="d-flex align-items-center">
+
+                    <div class="rounded-circle bg-primary-subtle text-primary
+                                d-flex align-items-center justify-content-center me-2"
+                         style="width: 38px; height: 38px;">
+
+                        <i class="bi bi-person"></i>
+
+                    </div>
+
+                    <div class="small text-truncate">
+
+                        <div class="fw-semibold">
+                            {{ user?.fullName }}
+                        </div>
+
+                        <div class="text-white-50">
+                            Administrator
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MOBILE SIDEBAR ================= -->
+        <div
+            class="offcanvas offcanvas-start text-bg-dark"
+            tabindex="-1"
+            id="sidebarMenu"
+            aria-labelledby="sidebarMenuLabel">
+
+            <div class="offcanvas-header border-bottom border-secondary">
+
+                <h5 class="offcanvas-title" id="sidebarMenuLabel">
+                    <i class="bi bi-building me-2"></i>
+                    EMS
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close">
+                </button>
+
+            </div>
+
+            <div class="offcanvas-body p-0">
+
+                <nav class="nav nav-pills flex-column p-3 gap-1">
+
+                    <a
+                        class="nav-link text-white"
+                        routerLink="/dashboard"
+                        routerLinkActive="active"
+                        data-bs-dismiss="offcanvas">
+
+                        <i class="bi bi-speedometer2 me-3"></i>
+                        Dashboard
+
+                    </a>
+
+                    <a
+                        *ngIf="authService.hasRole('Admin')"
+                        class="nav-link text-white"
+                        routerLink="/employee"
+                        routerLinkActive="active"
+                        data-bs-dismiss="offcanvas">
+
+                        <i class="bi bi-people me-3"></i>
+                        Employees
+
+                    </a>
+
+                    <a
+                        class="nav-link text-white"
+                        routerLink="/department"
+                        routerLinkActive="active"
+                        data-bs-dismiss="offcanvas">
+
+                        <i class="bi bi-diagram-3 me-3"></i>
+                        Departments
+
+                    </a>
+
+                    <a
+                        class="nav-link text-white"
+                        routerLink="/reports"
+                        routerLinkActive="active"
+                        data-bs-dismiss="offcanvas">
+
+                        <i class="bi bi-bar-chart-line me-3"></i>
+                        Reports
+
+                    </a>
+
+
+                    <div class="mt-3">
+                        <small class="text-uppercase text-white-50 fw-semibold px-3">
+                            Masters
+                        </small>
+                    </div>
+
+                    <a
+                        class="nav-link text-white"
+                        routerLink="/designation"
+                        routerLinkActive="active"
+                        data-bs-dismiss="offcanvas">
+
+                        <i class="bi bi-person-badge me-3"></i>
+                        Designations
+
+                    </a>
+
+                    <a
+                        class="nav-link text-white"
+                        routerLink="/department"
+                        routerLinkActive="active"
+                        data-bs-dismiss="offcanvas">
+
+                        <i class="bi bi-building me-3"></i>
+                        Departments
+
+                    </a>
+
+                    <a
+                        class="nav-link text-white"
+                        routerLink="/city"
+                        routerLinkActive="active"
+                        data-bs-dismiss="offcanvas">
+
+                        <i class="bi bi-geo-alt me-3"></i>
+                        Cities
+
+                    </a>
+
+                </nav>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="flex-grow-1 p-3 p-md-4">
+
+            <div class="container-fluid">
+
+                <router-outlet></router-outlet>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+    <!-- <footer class="bg-white border-top text-center py-2">
+
+        <small class="text-body-secondary">
+            © 2026 EMS — Employee Management System. All rights reserved.
+        </small>
+
+    </footer> -->
+
+
+    <!-- ================= NOTIFICATION PANEL ================= -->
+    <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="notificationPanel"
+        aria-labelledby="notificationPanelLabel">
+
+        <div class="offcanvas-header border-bottom">
+
+            <h5 class="offcanvas-title" id="notificationPanelLabel">
+                <i class="bi bi-bell me-2"></i>
+                Notifications
+            </h5>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close">
+            </button>
+
+        </div>
+
+
+        <div class="offcanvas-body p-0">
+
+            <!-- Notification -->
+            <div class="p-3 border-bottom">
+
+                <div class="d-flex">
+
+                    <div
+                        class="rounded-circle bg-primary-subtle text-primary
+                               d-flex align-items-center justify-content-center me-3"
+                        style="width: 42px; height: 42px;">
+
+                        <i class="bi bi-person-plus"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="fw-semibold">
+                            New employee added
+                        </div>
+
+                        <small class="text-body-secondary">
+                            A new employee was added to the system.
+                        </small>
+
+                        <div class="small text-body-secondary mt-1">
+                            5 minutes ago
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Notification -->
+            <div class="p-3 border-bottom">
+
+                <div class="d-flex">
+
+                    <div
+                        class="rounded-circle bg-warning-subtle text-warning
+                               d-flex align-items-center justify-content-center me-3"
+                        style="width: 42px; height: 42px;">
+
+                        <i class="bi bi-calendar-event"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="fw-semibold">
+                            Leave request pending
+                        </div>
+
+                        <small class="text-body-secondary">
+                            An employee leave request requires approval.
+                        </small>
+
+                        <div class="small text-body-secondary mt-1">
+                            1 hour ago
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Notification -->
+            <div class="p-3 border-bottom">
+
+                <div class="d-flex">
+
+                    <div
+                        class="rounded-circle bg-success-subtle text-success
+                               d-flex align-items-center justify-content-center me-3"
+                        style="width: 42px; height: 42px;">
+
+                        <i class="bi bi-check-circle"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="fw-semibold">
+                            Report generated
+                        </div>
+
+                        <small class="text-body-secondary">
+                            Monthly employee report is ready.
+                        </small>
+
+                        <div class="small text-body-secondary mt-1">
+                            Yesterday
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Empty / Footer -->
+            <div class="p-3 text-center">
+
+                <a
+                    routerLink="/notifications"
+                    class="btn btn-outline-primary btn-sm"
+                    data-bs-dismiss="offcanvas">
+
+                    View all notifications
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

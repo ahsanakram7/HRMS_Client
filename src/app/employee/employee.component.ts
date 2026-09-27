@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from './service/employee.service';
+import { EmployeeService } from '../services/employee.service';
 import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 import { employee } from '../models/employee';
-import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -28,9 +26,7 @@ export class EmployeeComponent implements OnInit {
   btnText: string = '';
   btnVisibility: boolean = false;
 
-  user: any;
-
-  constructor(public authService: AuthService, private employeeService: EmployeeService, private router: Router) {
+  constructor(private employeeService: EmployeeService) {
 
     this.employee = {
       emp_no: 0,
@@ -79,15 +75,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
 
     this.fnGetAllEmployees();
-    this.user = this.authService.getUser();
 
-  }
-
-  logout(){
-
-    this.authService.logout();
-    this.router.navigate(['/']);
-  
   }
 
   showEmpAddForm(){

@@ -21,6 +21,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { UserComponent } from './user/user.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper'
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ScreenComponent } from './screen/screen.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { MatStepperModule } from '@angular/material/stepper'
     DashboardComponent,
     AuthenticationComponent,
     LayoutComponent,
-    UserComponent
+    UserComponent,
+    ScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import { MatStepperModule } from '@angular/material/stepper'
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

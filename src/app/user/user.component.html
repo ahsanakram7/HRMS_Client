@@ -2,15 +2,608 @@
   <mat-horizontal-stepper #stepper>
     <mat-step>
       <ng-template matStepLabel>Users</ng-template>
+
+      <div class="card shadow border-0 mb-4">
+
+        <!-- Form Header -->
+        <div class="header" *ngIf="!showListArea">
+            <div>
+                <h4 class="title">{{ btnTextFormHeader }}</h4>
+                <!-- <p class="subtitle">
+                    Register a new user
+                </p> -->
+            </div>
+        </div>
+
+        <!-- Form Fields -->
+        <div class="container mb-3" *ngIf="!showListArea">
+          <form>
+
+            <div class="row g-3 user-form">
+
+                <!-- Full Name -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Full Name</mat-label>
+                        <input
+                            matInput
+                            type="text"
+                            name="fullName"
+                            placeholder="Full Name"
+                            [(ngModel)]="user.fullName"
+                            [disabled]="disableControls">
+                    </mat-form-field>
+                </div>
+
+                <!-- User Name -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Name</mat-label>
+                        <input
+                            matInput
+                            name="userName"
+                            placeholder="User Name"
+                            [(ngModel)]="user.userName"
+                            [disabled]="disableControls">
+                    </mat-form-field>
+                </div>
+
+                <!-- Email -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input
+                            matInput
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            [(ngModel)]="user.email"
+                            [disabled]="disableControls">
+                    </mat-form-field>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Phone Number</mat-label>
+                        <input
+                            matInput
+                            name="phone"
+                            placeholder="Phone Number"
+                            [(ngModel)]="user.phoneNumber"
+                            [disabled]="disableControls">
+                    </mat-form-field>
+                </div>
+
+                <!-- Password -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Password</mat-label>
+                        <input
+                            matInput
+                            [type]="hide ? 'password' : 'text'"
+                            name="password"
+                            placeholder="Password"
+                            [(ngModel)]="user.passwordHash"
+                            [disabled]="disableControls">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <!-- Role -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Role</mat-label>
+                        <mat-select
+                            name="Role"
+                            [(ngModel)]="user.role"
+                            [disabled]="disableControls">
+
+                            <mat-option
+                                *ngFor="let role of roles"
+                                [value]="role.name">
+
+                                {{ role.name }}
+
+                            </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <!-- ACTIONS -->
+
+            <hr class="form-divider">
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary px-4"
+                    (click)="BackToList()"
+                    style="margin-right: 10px;">
+
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Back
+
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary px-5"
+                    *ngIf="btnVisibility"
+                    (click)="fnSaveUser()">
+
+                    <i class="bi bi-check2 me-1"></i>
+                    {{ btnText }}
+
+                </button>
+
+            </div>
+
+          </form>
+        </div>
+        
+
+        <!-- Table Header -->
+        <div class="header" *ngIf="showListArea">
+            <div>
+                <h4 class="title">Users List</h4>
+                <p class="subtitle">
+                    Manage and view all users
+                </p>
+            </div>
+    
+            <div class="search">
+                <i class="bi bi-search"></i>
+                <input
+                    #searchInput
+                    type="text"
+                    class="form-control"
+                    placeholder="Search user..."
+                    (input)="searchUser(searchInput.value)"
+                />
+            </div>
+
+            <div>
+                <button class="btn btn-light" (click)="showUserAddForm()">
+                    + Add New User
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper" *ngIf="showListArea">
+            <table class="modern-table">
+    
+                <thead>
+                    <tr>
+                        <th class="sr-column">#</th>
+                        <th>Full Name</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Role</th>
+                        <th class="actions-column" style="width: 130px;">Actions</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+
+                  <tr *ngFor="let user of users; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ user.fullName }}</td>
+                    <td>{{ user.userName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phoneNumber }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                      <button
+                          type="button"
+                          class="action-btn view-btn"
+                          title="View User"
+                          (click)="fnGetUserById(user.id, 'view')">
+                          <i class="bi bi-eye"></i>
+                      </button>
+
+                      <button
+                          type="button"
+                          class="action-btn edit-btn"
+                          title="Edit User"
+                          (click)="fnGetUserById(user.id, 'edit')"
+                          >
+                          <i class="bi bi-pencil"></i>
+                      </button>
+
+                      <button
+                          type="button"
+                          class="action-btn delete-btn"
+                          title="Delete User"
+                          (click)="fnDeleteUser(user.id)">
+                          <i class="bi bi-trash3"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Empty State -->
+                  <tr *ngIf="users?.length === 0">
+  
+                      <td colspan="10">
+  
+                          <div class="empty-state">
+  
+                              <div class="empty-icon">
+                                  <i class="bi bi-people"></i>
+                              </div>
+  
+                              <h5>No users found</h5>
+  
+                              <p>
+                                  Try changing your search or add a new user.
+                              </p>
+  
+                          </div>
+  
+                      </td>
+  
+                  </tr>
+    
+                </tbody>
+    
+            </table>
+        </div>
+
+        <!-- Footer / Pagination -->
+        <div class="table-footer" *ngIf="showListArea">
+    
+            <div class="table-summary">
+                Showing
+                <strong>{{ users?.length || 0 }}</strong>
+                users
+            </div>
+    
+            <mat-paginator
+                [length]="pagelength"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="pageChangeEvent($event)"
+                aria-label="Select page">
+            </mat-paginator>
+    
+        </div>
+      </div>
+
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Roles</ng-template>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Assign Roles</ng-template>
+
+      <div class="card shadow border-0 mb-4">
+
+        <!-- Form Header -->
+        <div class="header" *ngIf="!showListAreaRole">
+            <div>
+                <h4 class="title">{{ btnTextFormHeaderRole }}</h4>
+                <!-- <p class="subtitle">
+                    Register a new Role
+                </p> -->
+            </div>
+        </div>
+
+        <!-- Form Fields -->
+        <div class="container mb-3" *ngIf="!showListAreaRole">
+          <form>
+
+            <div class="row g-3 user-form">
+
+                <!-- Role Name -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Role Name</mat-label>
+                        <input
+                            matInput
+                            type="text"
+                            name="Name"
+                            placeholder="Role Name"
+                            [(ngModel)]="role.name"
+                            [disabled]="disableControlsRole">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <!-- ACTIONS -->
+
+            <hr class="form-divider">
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary px-4"
+                    (click)="BackToListRole()"
+                    style="margin-right: 10px;">
+
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Back
+
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary px-5"
+                    *ngIf="btnVisibilityRole"
+                    (click)="fnSaveRole()">
+
+                    <i class="bi bi-check2 me-1"></i>
+                    {{ btnTextRole }}
+
+                </button>
+
+            </div>
+
+          </form>
+        </div>
+        
+
+        <!-- Table Header -->
+        <div class="header" *ngIf="showListAreaRole">
+            <div>
+                <h4 class="title">Roles List</h4>
+                <p class="subtitle">
+                    Manage and view all roles
+                </p>
+            </div>
+    
+            <div class="search">
+                <i class="bi bi-search"></i>
+                <input
+                    #searchInputRole
+                    type="text"
+                    class="form-control"
+                    placeholder="Search role..."
+                    (input)="searchRole(searchInputRole.value)"
+                />
+            </div>
+
+            <div>
+                <button class="btn btn-light" (click)="showUserAddFormRole()">
+                    + Add New Role
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper" *ngIf="showListAreaRole">
+            <table class="modern-table">
+    
+                <thead>
+                    <tr>
+                        <th class="sr-column">#</th>
+                        <th>Name</th>
+                        <th class="actions-column" style="width: 130px;">Actions</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+
+                  <tr *ngFor="let role of roles; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ role.name }}</td>
+                    <td>
+                      <button
+                          type="button"
+                          class="action-btn view-btn"
+                          title="View Role"
+                          (click)="fnGetRoleById(role.id, 'view')">
+                          <i class="bi bi-eye"></i>
+                      </button>
+
+                      <button
+                          type="button"
+                          class="action-btn edit-btn"
+                          title="Edit Role"
+                          (click)="fnGetRoleById(role.id, 'edit')"
+                          >
+                          <i class="bi bi-pencil"></i>
+                      </button>
+
+                      <button
+                          type="button"
+                          class="action-btn delete-btn"
+                          title="Delete Role"
+                          (click)="fnDeleteRole(role.id)">
+                          <i class="bi bi-trash3"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Empty State -->
+                  <tr *ngIf="roles?.length === 0">
+  
+                      <td colspan="10">
+  
+                          <div class="empty-state">
+  
+                              <div class="empty-icon">
+                                  <i class="bi bi-people"></i>
+                              </div>
+  
+                              <h5>No roles found</h5>
+  
+                              <p>
+                                  Try changing your search or add a new role.
+                              </p>
+  
+                          </div>
+  
+                      </td>
+  
+                  </tr>
+    
+                </tbody>
+    
+            </table>
+        </div>
+
+        <!-- Footer / Pagination -->
+        <div class="table-footer" *ngIf="showListAreaRole">
+    
+            <div class="table-summary">
+                Showing
+                <strong>{{ roles?.length || 0 }}</strong>
+                roles
+            </div>
+    
+            <mat-paginator
+                [length]="pagelengthRole"
+                [pageSize]="pageSizeRole"
+                [pageIndex]="pageIndexRole"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="pageChangeEventRole($event)"
+                aria-label="Select page">
+            </mat-paginator>
+    
+        </div>
+      </div>
+
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Role Activities</ng-template>
+
+      <div class="card shadow border-0 mb-4">
+        <!-- Form Header -->
+        <div class="header">
+            <div>
+                <h4 class="title">Role Activities Assignment</h4>
+            </div>
+        </div>
+
+        <!-- Form Fields -->
+        <div class="container mb-3">
+          <form>
+
+            <div class="row g-3 user-form">
+
+                <!-- Role -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Role</mat-label>
+                        <mat-select
+                            name="RoleScreen"
+                            [(ngModel)]="user.role" (selectionChange)="fnGetAllRolesActivities()">
+
+                            <mat-option value=""> -- Select -- </mat-option>
+
+                            <mat-option
+                                *ngFor="let role of roles"
+                                [value]="role.name">
+
+                                {{ role.name }}
+
+                            </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Table Header -->
+        <!-- <div class="header">
+            <div>
+                <h4 class="title">Activities List</h4>
+                <p class="subtitle">
+                    Manage and view all activities
+                </p>
+            </div>
+        </div> -->
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <table class="modern-table">
+    
+                <thead>
+                    <tr>
+                        <th><mat-checkbox style="margin: 10px;" *ngIf="rolesActivities.length > 0" (change)="toggleAllroleActivities($event.checked)"></mat-checkbox> Screen Name </th>
+                        <th>Can View</th>
+                        <th>Can Add</th>
+                        <th>Can Edit</th>
+                        <th>Can Delete</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+
+                  <tr *ngFor="let screen of rolesActivities;">
+                    <td>{{ screen.screen }}</td>
+                    <td>
+                        <mat-checkbox [(ngModel)]="screen.canView"></mat-checkbox>
+                        <!-- <input type="checkbox" /> -->
+                    </td>
+                    <td>
+                        <mat-checkbox [(ngModel)]="screen.canAdd"></mat-checkbox>
+                        <!-- <input type="checkbox" [(ngModel)]="screen.canAdd"/> -->
+                    </td>
+                    <td>
+                        <mat-checkbox [(ngModel)]="screen.canEdit"></mat-checkbox>
+                        <!-- <input type="checkbox" [(ngModel)]="screen.canEdit"/> -->
+                    </td>
+                    <td>
+                        <mat-checkbox [(ngModel)]="screen.canDelete"></mat-checkbox>
+                        <!-- <input type="checkbox" [(ngModel)]="screen.canDelete"/> -->
+                    </td>
+                  </tr>
+
+                  <!-- Empty State -->
+                  <tr *ngIf="rolesActivities?.length === 0">
+  
+                      <td colspan="10">
+  
+                          <div class="empty-state">
+  
+                              <div class="empty-icon">
+                                  <i class="bi bi-tv"></i>
+                              </div>
+  
+                              <h5>No role activities found</h5>
+  
+                          </div>
+  
+                      </td>
+  
+                  </tr>
+    
+                </tbody>
+    
+            </table>
+        </div>
+
+        <!-- Footer / Pagination -->
+        <div class="table-footer">
+    
+            <div class="table-summary">
+                <button
+                    type="button"
+                    class="btn btn-outline-primary px-4"
+                    (click)="fnSaveRoleActivities()"
+                    style="margin-right: 10px;">
+
+                    <i class="bi bi-save me-1"></i>
+                    Save
+
+                </button>
+            </div>
+    
+        </div>
+
+      </div>
+
     </mat-step>
   </mat-horizontal-stepper>
 </div>

@@ -8,13 +8,15 @@ import { LoginGuard } from './gaurds/login.guard';
 import { RoleGuard } from './gaurds/role.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { UserComponent } from './user/user.component';
+import { ScreenComponent } from './screen/screen.component';
 
 const routes: Routes = [
   {path: '', component: AuthenticationComponent, canActivate:[LoginGuard]},
   {path: '', component: LayoutComponent, canActivate:[AuthGuard], children: [
     {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
     {path: 'employee', component: EmployeeComponent, canActivate:[AuthGuard,RoleGuard], data:{ roles:['Admin']}},
-    {path: 'user', component: UserComponent, canActivate:[AuthGuard,RoleGuard], data:{ roles:['Admin']}}
+    {path: 'user', component: UserComponent, canActivate:[AuthGuard,RoleGuard], data:{ roles:['Admin']}},
+    {path: 'screen', component: ScreenComponent, canActivate:[AuthGuard,RoleGuard], data:{ roles:['Admin']}}
   ]}
 ];
 

@@ -245,7 +245,7 @@
                         </div>
 
                         <small class="text-white-50">
-                            Administration
+                            System
                         </small>
                     </div>
 
@@ -261,9 +261,20 @@
                     Main Menu
                 </small>
 
+                <!-- Screens -->
+                <a *ngFor="let screen of screens"
+                    class="nav-link text-white"
+                    routerLink="/{{ screen.route }}"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }">
 
-                <!-- Dashboard -->
-                <a
+                    <i class="{{ screen.icon }} me-3"></i>
+                    {{ screen.name }}
+
+                </a>
+
+
+                <!-- <a
                     class="nav-link text-white"
                     routerLink="/dashboard"
                     routerLinkActive="active"
@@ -272,23 +283,10 @@
                     <i class="bi bi-speedometer2 me-3"></i>
                     Dashboard
 
-                </a>
-
-
-                <!-- Employees -->
-                <a
-                    *ngIf="authService.hasRole('Admin')"
-                    class="nav-link text-white"
-                    routerLink="/employee"
-                    routerLinkActive="active">
-
-                    <i class="bi bi-person-circle me-3"></i>
-                    Employees
-
-                </a>
+                </a> -->
 
                 <!-- Users -->
-                <a
+                <!-- <a
                     *ngIf="authService.hasRole('Admin')"
                     class="nav-link text-white"
                     routerLink="/user"
@@ -297,11 +295,34 @@
                     <i class="bi bi-people me-3"></i>
                     User Management
 
-                </a>
+                </a> -->
 
+                <!-- Screens -->
+                <!-- <a
+                    *ngIf="authService.hasRole('Admin')"
+                    class="nav-link text-white"
+                    routerLink="/screen"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-tv me-3"></i>
+                    Screens
+
+                </a> -->
+
+                <!-- Employees -->
+                <!-- <a
+                    *ngIf="authService.hasRole('Admin')"
+                    class="nav-link text-white"
+                    routerLink="/employee"
+                    routerLinkActive="active">
+
+                    <i class="bi bi-person-circle me-3"></i>
+                    Employees
+
+                </a> -->
 
                 <!-- Departments -->
-                <a
+                <!-- <a
                     class="nav-link text-white"
                     routerLink="/department"
                     routerLinkActive="active">
@@ -309,11 +330,11 @@
                     <i class="bi bi-diagram-3 me-3"></i>
                     Departments
 
-                </a>
+                </a> -->
 
 
                 <!-- Reports -->
-                <a
+                <!-- <a
                     class="nav-link text-white"
                     routerLink="/reports"
                     routerLinkActive="active">
@@ -321,20 +342,20 @@
                     <i class="bi bi-bar-chart-line me-3"></i>
                     Reports
 
-                </a>
+                </a> -->
 
 
                 <!-- Masters -->
-                <div class="mt-3">
+                <!-- <div class="mt-3">
 
                     <small class="text-uppercase text-white-50 fw-semibold px-3">
                         Masters
                     </small>
 
-                </div>
+                </div> -->
 
 
-                <a
+                <!-- <a
                     class="nav-link text-white"
                     routerLink="/designation"
                     routerLinkActive="active">
@@ -364,7 +385,7 @@
                     <i class="bi bi-geo-alt me-3"></i>
                     Cities
 
-                </a>
+                </a> -->
 
             </nav>
 
@@ -389,7 +410,7 @@
                         </div>
 
                         <div class="text-white-50">
-                            Administrator
+                            {{ user?.userName }}
                         </div>
 
                     </div>

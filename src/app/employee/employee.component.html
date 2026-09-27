@@ -33,164 +33,305 @@
         <div class="card-body">
             
             <form>
-                <div class="row g-3">
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                <div class="row g-3 employee-form">
+
+                    <!-- Employee No -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Employee No</mat-label>
-                            <input matInput type="number" name="emp_no" placeholder="Employee No" [(ngModel)]="employee.emp_no" [disabled]="disableControls">
+                            <input
+                                matInput
+                                type="number"
+                                name="emp_no"
+                                placeholder="Employee No"
+                                [(ngModel)]="employee.emp_no"
+                                [disabled]="disableControls">
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Full Name -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Full Name</mat-label>
-                            <input matInput name="full_name" placeholder="Full Name" [(ngModel)]="employee.full_name" [disabled]="disableControls">
+                            <input
+                                matInput
+                                name="full_name"
+                                placeholder="Full Name"
+                                [(ngModel)]="employee.full_name"
+                                [disabled]="disableControls">
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Employee Type -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Employee Type</mat-label>
-                            <mat-select name="part_full_time_flag" [(ngModel)]="employee.part_full_time_flag" [disabled]="disableControls">
-                              <mat-option value="F">Full Time</mat-option>
-                              <mat-option value="P">Part Time</mat-option>
+                            <mat-select
+                                name="part_full_time_flag"
+                                [(ngModel)]="employee.part_full_time_flag"
+                                [disabled]="disableControls">
+
+                                <mat-option value="F">Full Time</mat-option>
+                                <mat-option value="P">Part Time</mat-option>
+
                             </mat-select>
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Religion -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Religion</mat-label>
-                            <mat-select name="religion" [(ngModel)]="employee.religion" [disabled]="disableControls">
-                              <mat-option value="Islam">Islam</mat-option>
-                              <mat-option value="Hindu">Hindu</mat-option>
-                              <mat-option value="Christian">Christian</mat-option>
+                            <mat-select
+                                name="religion"
+                                [(ngModel)]="employee.religion"
+                                [disabled]="disableControls">
+
+                                <mat-option value="Islam">Islam</mat-option>
+                                <mat-option value="Hindu">Hindu</mat-option>
+                                <mat-option value="Christian">Christian</mat-option>
+
                             </mat-select>
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Sex -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Sex</mat-label>
-                            <mat-select name="emp_sex" [(ngModel)]="employee.emp_sex" [disabled]="disableControls">
-                              <mat-option value="Male">Male</mat-option>
-                              <mat-option value="Female">Female</mat-option>
+                            <mat-select
+                                name="emp_sex"
+                                [(ngModel)]="employee.emp_sex"
+                                [disabled]="disableControls">
+
+                                <mat-option value="Male">Male</mat-option>
+                                <mat-option value="Female">Female</mat-option>
+
                             </mat-select>
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Blood Group -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Blood Group</mat-label>
-                            <mat-select name="blood_group" [(ngModel)]="employee.blood_group" [disabled]="disableControls">
-                              <mat-option value="A+">A+</mat-option>
-                              <mat-option value="A-">A-</mat-option>
-                              <mat-option value="B+">B+</mat-option>
-                              <mat-option value="B−">B−</mat-option>
-                              <mat-option value="AB+">AB+</mat-option>
-                              <mat-option value="AB-">AB-</mat-option>
-                              <mat-option value="O+">O+</mat-option>
-                              <mat-option value="O-">O-</mat-option>
+                            <mat-select
+                                name="blood_group"
+                                [(ngModel)]="employee.blood_group"
+                                [disabled]="disableControls">
+
+                                <mat-option value="A+">A+</mat-option>
+                                <mat-option value="A-">A-</mat-option>
+                                <mat-option value="B+">B+</mat-option>
+                                <mat-option value="B-">B-</mat-option>
+                                <mat-option value="AB+">AB+</mat-option>
+                                <mat-option value="AB-">AB-</mat-option>
+                                <mat-option value="O+">O+</mat-option>
+                                <mat-option value="O-">O-</mat-option>
+
                             </mat-select>
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Marital Status -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Marital Status</mat-label>
-                            <mat-select name="marital_status" [(ngModel)]="employee.marital_status" [disabled]="disableControls">
-                              <mat-option value="M">Married</mat-option>
-                              <mat-option value="S">Single</mat-option>
-                              <mat-option value="D">Divorced</mat-option>
+                            <mat-select
+                                name="marital_status"
+                                [(ngModel)]="employee.marital_status"
+                                [disabled]="disableControls">
+
+                                <mat-option value="M">Married</mat-option>
+                                <mat-option value="S">Single</mat-option>
+                                <mat-option value="D">Divorced</mat-option>
+
                             </mat-select>
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Marital Date -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Marital Date</mat-label>
-                            <input matInput [matDatepicker]="Maritalpicker" name="marital_dated" [(ngModel)]="employee.marital_dated" [disabled]="disableControls">
-                            <mat-datepicker-toggle matSuffix [for]="Maritalpicker"></mat-datepicker-toggle>
+
+                            <input
+                                matInput
+                                [matDatepicker]="Maritalpicker"
+                                name="marital_dated"
+                                [(ngModel)]="employee.marital_dated"
+                                [disabled]="disableControls">
+
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="Maritalpicker">
+                            </mat-datepicker-toggle>
+
                             <mat-datepicker #Maritalpicker></mat-datepicker>
+
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Date Of Birth -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Date Of Birth</mat-label>
-                            <input matInput [matDatepicker]="picker" name="date_of_birth" [(ngModel)]="employee.date_of_birth" [disabled]="disableControls">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+                            <input
+                                matInput
+                                [matDatepicker]="picker"
+                                name="date_of_birth"
+                                [(ngModel)]="employee.date_of_birth"
+                                [disabled]="disableControls">
+
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker">
+                            </mat-datepicker-toggle>
+
                             <mat-datepicker #picker></mat-datepicker>
+
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Country Of Birth -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Country Of Birth</mat-label>
-                            <input matInput name="country_of_birth" placeholder="Country Of Birth" [(ngModel)]="employee.country_of_birth" [disabled]="disableControls">
+                            <input
+                                matInput
+                                name="country_of_birth"
+                                placeholder="Country Of Birth"
+                                [(ngModel)]="employee.country_of_birth"
+                                [disabled]="disableControls">
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- City Of Birth -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>City Of Birth</mat-label>
-                            <input matInput name="city_of_birth" placeholder="City Of Birth" [(ngModel)]="employee.city_of_birth" [disabled]="disableControls">
+                            <input
+                                matInput
+                                name="city_of_birth"
+                                placeholder="City Of Birth"
+                                [(ngModel)]="employee.city_of_birth"
+                                [disabled]="disableControls">
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Local Travel -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Can Travel Local</mat-label>
-                            <mat-select name="can_travel_local" [(ngModel)]="employee.can_travel_local" [disabled]="disableControls">
-                              <mat-option value="Y">Yes</mat-option>
-                              <mat-option value="N">No</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Can Travel Abroad</mat-label>
-                            <mat-select name="can_travel_abroad" [(ngModel)]="employee.can_travel_abroad" [disabled]="disableControls">
+                            <mat-select
+                                name="can_travel_local"
+                                [(ngModel)]="employee.can_travel_local"
+                                [disabled]="disableControls">
+
                                 <mat-option value="Y">Yes</mat-option>
                                 <mat-option value="N">No</mat-option>
+
                             </mat-select>
+
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Abroad Travel -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Can Travel Abroad</mat-label>
+
+                            <mat-select
+                                name="can_travel_abroad"
+                                [(ngModel)]="employee.can_travel_abroad"
+                                [disabled]="disableControls">
+
+                                <mat-option value="Y">Yes</mat-option>
+                                <mat-option value="N">No</mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Mobile No</mat-label>
-                            <input matInput name="mobile_no" placeholder="Mobile No" [(ngModel)]="employee.mobile_no" [disabled]="disableControls">
+
+                            <input
+                                matInput
+                                name="mobile_no"
+                                placeholder="Mobile No"
+                                [(ngModel)]="employee.mobile_no"
+                                [disabled]="disableControls">
+
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Official Email -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Official Email Address</mat-label>
-                            <input matInput name="official_email_add" placeholder="Official Email Address" [(ngModel)]="employee.official_email_add" [disabled]="disableControls">
+
+                            <input
+                                matInput
+                                type="email"
+                                name="official_email_add"
+                                placeholder="Official Email Address"
+                                [(ngModel)]="employee.official_email_add"
+                                [disabled]="disableControls">
+
                         </mat-form-field>
                     </div>
 
-                    <div class="col-lg-2">
-                        <mat-form-field appearance="outline">
+                    <!-- Personal Email -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Personal Email Address</mat-label>
-                            <input matInput name="personal_email_add" placeholder="Personal Email Address" [(ngModel)]="employee.personal_email_add" [disabled]="disableControls">
+
+                            <input
+                                matInput
+                                type="email"
+                                name="personal_email_add"
+                                placeholder="Personal Email Address"
+                                [(ngModel)]="employee.personal_email_add"
+                                [disabled]="disableControls">
+
                         </mat-form-field>
                     </div>
 
                 </div>
 
-                <hr>
 
-                <div class="d-flex justify-content-end gap-2">
+                <!-- ACTIONS -->
 
-                    <button type="reset" class="btn btn-outline-secondary px-4" (click)="BackToList()">
+                <hr class="form-divider">
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary px-4"
+                        (click)="BackToList()"
+                        style="margin-right: 10px;">
+
+                        <i class="bi bi-arrow-left me-1"></i>
                         Back
+
                     </button>
 
-                    <button class="btn btn-primary px-5" style="opacity: 0.5;" *ngIf="btnVisibility" (click)="fnSaveEmp()">
+                    <button
+                        type="button"
+                        class="btn btn-primary px-5"
+                        *ngIf="btnVisibility"
+                        (click)="fnSaveEmp()">
+
+                        <i class="bi bi-check2 me-1"></i>
                         {{ btnText }}
+
                     </button>
 
                 </div>
@@ -201,18 +342,18 @@
 
     <!-- TABLE -->
 
-    <div class="employee-card" *ngIf="showListArea">
+    <div class="card" *ngIf="showListArea">
 
         <!-- Header -->
-        <div class="employee-header">
+        <div class="header">
             <div>
-                <h4 class="employee-title">Employee List</h4>
-                <p class="employee-subtitle">
+                <h4 class="title">Employee List</h4>
+                <p class="subtitle">
                     Manage and view all employees
                 </p>
             </div>
     
-            <div class="employee-search">
+            <div class="search">
                 <i class="bi bi-search"></i>
                 <input
                     #searchInput
@@ -233,7 +374,7 @@
                         <th class="sr-column">#</th>
                         <th>Employee</th>
                         <th>Type</th>
-                        <th>Religion</th>
+                        <!-- <th>Religion</th> -->
                         <th>Blood Group</th>
                         <th>Date of Birth</th>
                         <th>Birth Place</th>
@@ -254,19 +395,19 @@
     
                         <!-- Employee -->
                         <td>
-                            <div class="employee-info">
+                            <div class="info">
     
-                                <div class="employee-avatar">
+                                <!-- <div class="avatar">
                                     {{ employee.full_name?.charAt(0) }}
-                                </div>
+                                </div> -->
     
-                                <div class="employee-details">
+                                <div class="details">
     
-                                    <div class="employee-name">
+                                    <div class="name">
                                         {{ employee.full_name }}
                                     </div>
     
-                                    <div class="employee-number">
+                                    <div class="number">
                                         <i class="bi bi-person-badge"></i>
                                         {{ employee.emp_no }}
                                     </div>
@@ -297,11 +438,11 @@
                         </td>
     
                         <!-- Religion -->
-                        <td>
+                        <!-- <td>
                             <span class="normal-text">
                                 {{ employee.religion || '—' }}
                             </span>
-                        </td>
+                        </td> -->
     
                         <!-- Blood Group -->
                         <td>

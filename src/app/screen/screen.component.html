@@ -1,0 +1,239 @@
+<div class="card shadow border-0 mb-4">
+
+        <!-- Form Header -->
+        <div class="header" *ngIf="!showListArea">
+            <div>
+                <h4 class="title">{{ btnTextFormHeader }}</h4>
+            </div>
+        </div>
+
+        <!-- Form Fields -->
+        <div class="container mb-3" *ngIf="!showListArea">
+          <form>
+
+            <div class="row g-3 user-form">
+
+                <!-- Name -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Name</mat-label>
+                        <input
+                            matInput
+                            type="text"
+                            name="Name"
+                            placeholder="Name"
+                            [(ngModel)]="ScreenInterface.name"
+                            [disabled]="disableControls">
+                    </mat-form-field>
+                </div>
+
+                <!-- Icon -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Icon</mat-label>
+                        <input
+                            matInput
+                            name="Icon"
+                            placeholder="Icon"
+                            [(ngModel)]="ScreenInterface.icon"
+                            [disabled]="disableControls">
+                    </mat-form-field>
+                </div>
+
+                <!-- Route -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Route</mat-label>
+                        <input
+                            matInput
+                            name="Route"
+                            placeholder="Route"
+                            [(ngModel)]="ScreenInterface.route"
+                            [disabled]="disableControls">
+                    </mat-form-field>
+                </div>
+
+                <!-- IsActive -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>IsActive</mat-label>
+                        <mat-select name="IsActive" [(ngModel)]="ScreenInterface.isActive" [disabled]="disableControls">
+
+                            <mat-option [value]="true">Yes</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <!-- ACTIONS -->
+
+            <hr class="form-divider">
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary px-4"
+                    (click)="BackToList()"
+                    style="margin-right: 10px;">
+
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Back
+
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary px-5"
+                    *ngIf="btnVisibility"
+                    (click)="fnSaveScreen()">
+
+                    <i class="bi bi-check2 me-1"></i>
+                    {{ btnText }}
+
+                </button>
+
+            </div>
+
+          </form>
+        </div>
+        
+
+        <!-- Table Header -->
+        <div class="header" *ngIf="showListArea">
+            <div>
+                <h4 class="title">Screens List</h4>
+                <p class="subtitle">
+                    Manage and view all screens
+                </p>
+            </div>
+    
+            <div class="search">
+                <i class="bi bi-search"></i>
+                <input
+                    #searchInput
+                    type="text"
+                    class="form-control"
+                    placeholder="Search screen..."
+                    (input)="searchScreen(searchInput.value)"
+                />
+            </div>
+
+            <div>
+                <button class="btn btn-light" (click)="showScreenAddForm()">
+                    + Add New Screen
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper" *ngIf="showListArea">
+            <table class="modern-table">
+    
+                <thead>
+                    <tr>
+                        <th class="sr-column">#</th>
+                        <th>Name</th>
+                        <th>Icon</th>
+                        <th>Is Active</th>
+                        <th>Route</th>
+                        <th class="actions-column" style="width: 130px;">Actions</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+
+                  <tr *ngFor="let screen of screens; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ screen.name }}</td>
+                    <td><i class="{{ screen.icon }}"></i></td>
+                    <td>
+                        <span class="status-badge" [ngClass]="screen.isActive === true ? 'badge-full-time' : 'badge-part-time' ">
+                        <span class="status-dot"></span>
+                            {{
+                                screen.isActive === false
+                                ? 'Not Activated'
+                                : 'Activated'
+                            }}
+                        </span>
+                    </td>
+                    <td>{{ screen.route }}</td>
+                    <td>
+                      <button
+                          type="button"
+                          class="action-btn view-btn"
+                          title="View Screen"
+                          (click)="fnGetScreenById(screen.id, 'view')">
+                          <i class="bi bi-eye"></i>
+                      </button>
+
+                      <button
+                          type="button"
+                          class="action-btn edit-btn"
+                          title="Edit Screen"
+                          (click)="fnGetScreenById(screen.id, 'edit')"
+                          >
+                          <i class="bi bi-pencil"></i>
+                      </button>
+
+                      <button
+                          type="button"
+                          class="action-btn delete-btn"
+                          title="Delete Screen"
+                          (click)="fnDeleteScreen(screen.id)">
+                          <i class="bi bi-trash3"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Empty State -->
+                  <tr *ngIf="screens?.length === 0">
+  
+                      <td colspan="10">
+  
+                          <div class="empty-state">
+  
+                              <div class="empty-icon">
+                                  <i class="bi bi-people"></i>
+                              </div>
+  
+                              <h5>No screens found</h5>
+  
+                              <p>
+                                  Try changing your search or add a new screen.
+                              </p>
+  
+                          </div>
+  
+                      </td>
+  
+                  </tr>
+    
+                </tbody>
+    
+            </table>
+        </div>
+
+        <!-- Footer / Pagination -->
+        <div class="table-footer" *ngIf="showListArea">
+    
+            <div class="table-summary">
+                Showing
+                <strong>{{ screens?.length || 0 }}</strong>
+                screens
+            </div>
+    
+            <mat-paginator
+                [length]="pagelength"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="pageChangeEvent($event)"
+                aria-label="Select page">
+            </mat-paginator>
+    
+        </div>
+      </div>
